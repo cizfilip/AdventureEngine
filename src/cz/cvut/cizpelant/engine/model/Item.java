@@ -1,21 +1,16 @@
 package cz.cvut.cizpelant.engine.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import cz.cvut.cizpelant.engine.abstraction.GameActionException;
-
 public class Item {
 	private String name;
 	private String description;
 	private boolean movable;
-	private List<UseBehaviour> useBehaviour;
+	private UseBehaviour useBehaviour;
 	
 	public Item(String name, String description, boolean movable) {
 		this.name = name;
 		this.description = description;
 		this.movable = movable;
-		this.useBehaviour = new ArrayList<UseBehaviour>();
+		this.useBehaviour = null;
 	}
 
 	public String getName() {
@@ -30,24 +25,25 @@ public class Item {
 		return movable;
 	}
 
-	public void addUseBehaviour(UseBehaviour behaviour) {
-		useBehaviour.add(behaviour);
+	public void setUseBehaviour(UseBehaviour behaviour) {
+		useBehaviour = behaviour;
+	}
+	
+	public boolean isReusable() {
+		if(useBehaviour != null) {
+			return useBehaviour.isReusable();
+		}
+		return false;
 	}
 	
 	public boolean use(Game game) {
-		boolean result = false;
-		for(UseBehaviour behaviour : useBehaviour) {
-			if(behaviour.canBehave(game.getPlayer())) {
-				try {
-					behaviour.behave(game);
-					result = true;
-				} catch (GameActionException e) {
-					result = false;
-				}
-			}
+		if(useBehaviour != null && useBehaviour.canBehave(game.getPlayer())) {
+			useBehaviour.behave(game);
+			return true;
 		}
-		return result;
+		return false;
 	}
+	
 
 	
 	

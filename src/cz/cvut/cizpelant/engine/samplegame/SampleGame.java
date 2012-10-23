@@ -22,7 +22,7 @@ public class SampleGame {
 		builder.addOneWayPath("Pokusna", "Locked");
 		
 		Item klic = new Item("Klic", "eeee", true);
-		klic.addUseBehaviour(new UseBehaviour(new PlayerInRoomCondition("Pokusna"), new UnlockRoomAction("Locked")));
+		//klic.addUseBehaviour(new UseBehaviour(new PlayerInRoomCondition("Pokusna"), new UnlockRoomAction("Locked")));
 		builder.addItemToRoom("Pokusna", klic);
 		
 		

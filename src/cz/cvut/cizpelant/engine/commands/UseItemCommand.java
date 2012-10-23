@@ -25,9 +25,11 @@ public class UseItemCommand implements GameCommand {
 		
 		Item item = playerInventory.getItemByName(itemName);
 		
-		boolean used = item.use(game);
-		if(used){
-			playerInventory.removeItem(item);
+		boolean actionTaken = item.use(game);
+		if(actionTaken) {
+			if(!item.isReusable()){
+				playerInventory.removeItem(item);
+			}
 			return GameCommandResult.SuccessfulResult();
 		} else {
 			return GameCommandResult.UnsuccessfulResult("This item can't be used now.");

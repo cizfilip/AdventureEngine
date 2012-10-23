@@ -40,6 +40,7 @@ public class Controller {
 		
 		view.writeText("Press any key for exit.");
 		sc.nextLine();
+		sc.close();
 	}
 
 	private void executeCommand(String commandText) {
