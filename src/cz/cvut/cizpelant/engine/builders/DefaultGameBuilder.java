@@ -20,16 +20,24 @@ public class DefaultGameBuilder implements GameBuilder {
 	}
 
 	@Override
-	public void addPath(String fromRoomName, String toRoomName) {
+	public void addOneWayPath(String fromRoomName, String toRoomName) {
 		Room fromRoom = getRoomOrThrow(fromRoomName);
 		Room toRoom = getRoomOrThrow(toRoomName);
 		fromRoom.addNextRoom(toRoom);
 	}
+	
+	@Override
+	public void addTwoWayPath(String fromRoomName, String toRoomName) {
+		Room fromRoom = getRoomOrThrow(fromRoomName);
+		Room toRoom = getRoomOrThrow(toRoomName);
+		fromRoom.addNextRoom(toRoom);
+		toRoom.addNextRoom(fromRoom);
+	}
 
 	@Override
-	public void addItemToRoom(String roomName, String itemName, String itemDescription, boolean movable) {
+	public void addItemToRoom(String roomName, Item item) {
 		Room room = getRoomOrThrow(roomName);
-		room.getInventory().addItem(new Item(itemName, itemDescription, movable));
+		room.getInventory().addItem(item);
 	}
 
 	@Override
@@ -46,7 +54,7 @@ public class DefaultGameBuilder implements GameBuilder {
 	@Override
 	public void setStartRoom(String roomName) {
 		Room room = getRoomOrThrow(roomName);
-		game.getPlayer().setCurrentRoom(room);
+		game.getPlayer().moveTo(room);
 	}
 
 	@Override

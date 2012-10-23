@@ -12,6 +12,7 @@ public class CommandFactory {
 	public static final String MOVE_COMMAND = "move";
 	public static final String PICK_COMMAND = "pick";
 	public static final String DROP_COMMAND = "drop";
+	public static final String USE_COMMAND = "use";
 	
 	
 	public static GameCommand getCommand(String commandName, String[] params) {
@@ -25,8 +26,9 @@ public class CommandFactory {
 		if(commandName.equalsIgnoreCase(DROP_COMMAND)) {
 			return new DropItemCommand(getParam(params, 0));
 		}
-		
-		
+		if(commandName.equalsIgnoreCase(USE_COMMAND)) {
+			return new UseItemCommand(getParam(params, 0));
+		}
 		
 		if(commandName.equalsIgnoreCase(HELP_COMMAND)) {
 			return new HelpCommand();

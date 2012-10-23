@@ -6,11 +6,10 @@ import cz.cvut.cizpelant.engine.model.Game;
 import cz.cvut.cizpelant.engine.model.Inventory;
 import cz.cvut.cizpelant.engine.model.Item;
 
-public class DropItemCommand implements GameCommand {
-
+public class UseItemCommand implements GameCommand {
 	private String itemName;
 	
-	public DropItemCommand(String itemName) {
+	public UseItemCommand(String itemName) {
 		this.itemName = itemName;
 	}
 	
@@ -26,10 +25,13 @@ public class DropItemCommand implements GameCommand {
 		
 		Item item = playerInventory.getItemByName(itemName);
 		
-		game.getPlayer().getCurrentRoom().getInventory().addItem(item);
-		playerInventory.removeItem(item);
-		
-		return GameCommandResult.SuccessfulResult();
+		boolean used = item.use(game);
+		if(used){
+			playerInventory.removeItem(item);
+			return GameCommandResult.SuccessfulResult();
+		} else {
+			return GameCommandResult.UnsuccessfulResult("This item can't be used now.");
+		}
 	}
 
 }

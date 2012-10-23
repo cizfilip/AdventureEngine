@@ -50,8 +50,8 @@ public class Room {
 		return locked;
 	}
 
-	public void setLocked(boolean locked) {
-		this.locked = locked;
+	public void unlock() {
+		this.locked = false;
 	}
 	
 }

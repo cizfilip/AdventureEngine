@@ -13,6 +13,8 @@ public class HelpCommand implements GameCommand {
 		sb.append("Available commands:\n");
 		sb.append("move [room name] - Move to another specified room.\n");
 		sb.append("pick [item name] - Pick item with specified name in current room.\n");
+		sb.append("drop [item name] - Drop item with specified name in current room.\n");
+		sb.append("use  [item name] - Use item with specified name.\n");
 		
 		sb.append("help - Show this help.\n");
 		sb.append("exit - Exits the game.\n");

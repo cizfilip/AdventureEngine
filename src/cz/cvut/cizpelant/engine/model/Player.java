@@ -16,7 +16,7 @@ public class Player {
 		return currentRoom;
 	}
 
-	public void setCurrentRoom(Room currentRoom) {
+	public void moveTo(Room currentRoom) {
 		this.currentRoom = currentRoom;
 	}
 

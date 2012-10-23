@@ -32,7 +32,7 @@ public class MoveCommand implements GameCommand {
 			return GameCommandResult.UnsuccessfulResult("You can't go to this room. You are carrying immovable item.");
 			
 		
-		game.getPlayer().setCurrentRoom(toRoom);
+		game.getPlayer().moveTo(toRoom);
 		
 		return GameCommandResult.SuccessfulResult();
 	}
