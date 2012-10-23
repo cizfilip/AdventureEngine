@@ -13,22 +13,25 @@ public class SampleGame {
 	public Game createSampleGame() {
 		GameBuilder builder = new DefaultGameBuilder();
 		
-		builder.addRoom("Pokusna", "Super mistnost", false);
-		builder.addRoom("Nova", "jeste lepsi", false);
-		builder.addRoom("Locked", "nejde", true);
+		builder.addRoom("a room", "a nice looking room", false);
+		builder.addRoom("coridor", "a coridor", false);
+		builder.addRoom("large room", "large room", false);
+		builder.addRoom("funky room", "funky room", false);
+		builder.addRoom("The END", "the end", true);
 		
-		builder.addTwoWayPath("Pokusna", "Nova");
+		builder.addTwoWayPath("a room", "coridor");
+		builder.addTwoWayPath("coridor", "large room");
+		builder.addTwoWayPath("large room", "funky room");
+		builder.addTwoWayPath("large room", "The END");
 
-		builder.addOneWayPath("Pokusna", "Locked");
-		
-		Item klic = new Item("Klic", "eeee", true);
-		klic.setUseBehaviour(new UseBehaviour(new PlayerInRoomCondition("Pokusna"), new UnlockRoomAction("Locked"), true));
-		builder.addItemToRoom("Pokusna", klic);
+		Item klic = new Item("a key", "a key", true);
+		klic.setUseBehaviour(new UseBehaviour(new PlayerInRoomCondition("large room"), new UnlockRoomAction("The END"), true));
+		builder.addItemToRoom("funky room", klic);
 		
 		
-		builder.setStartRoom("Pokusna");
+		builder.setStartRoom("a room");
 		
-		builder.setEndCondition(new PlayerInRoomCondition("Locked"));
+		builder.setEndCondition(new PlayerInRoomCondition("The END"));
 		
 		return builder.getResult();
 	}
