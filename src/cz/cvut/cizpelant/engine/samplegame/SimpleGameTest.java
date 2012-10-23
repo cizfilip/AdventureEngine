@@ -16,12 +16,12 @@ public class SimpleGameTest {
     public void test() {
         Game game = new SampleGame().createSampleGame();
         new MoveCommand("coridor").Execute(game);
-        new MoveCommand("large room").Execute(game);
-        new MoveCommand("funky room").Execute(game);
-        new PickItemCommand("a key").Execute(game);
-        new MoveCommand("large room").Execute(game);
-        new UseItemCommand("a key").Execute(game);
-        new MoveCommand("The END").Execute(game);
+        new MoveCommand("largeRoom").Execute(game);
+        new MoveCommand("funkyRoom").Execute(game);
+        new PickItemCommand("key").Execute(game);
+        new MoveCommand("largeRoom").Execute(game);
+        new UseItemCommand("key").Execute(game);
+        new MoveCommand("TheEND").Execute(game);
         Assert.assertEquals(game.isEnd(), true);
     }
     
@@ -29,8 +29,8 @@ public class SimpleGameTest {
     public void test2() {
         Game game = new SampleGame().createSampleGame();
         new MoveCommand("coridor").Execute(game);
-        new MoveCommand("large room").Execute(game);
-        new MoveCommand("The END").Execute(game);
+        new MoveCommand("largeRoom").Execute(game);
+        new MoveCommand("TheEND").Execute(game);
         Assert.assertEquals(game.isEnd(), true);
     }
     

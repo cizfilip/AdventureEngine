@@ -13,25 +13,25 @@ public class SampleGame {
 	public Game createSampleGame() {
 		GameBuilder builder = new DefaultGameBuilder();
 		
-		builder.addRoom("a room", "a nice looking room", false);
+		builder.addRoom("room", "a nice looking room", false);
 		builder.addRoom("coridor", "a coridor", false);
-		builder.addRoom("large room", "large room", false);
-		builder.addRoom("funky room", "funky room", false);
-		builder.addRoom("The END", "the end", true);
+		builder.addRoom("largeRoom", "large room", false);
+		builder.addRoom("funkyRoom", "funky room", false);
+		builder.addRoom("TheEND", "the end", true);
 		
-		builder.addTwoWayPath("a room", "coridor");
-		builder.addTwoWayPath("coridor", "large room");
-		builder.addTwoWayPath("large room", "funky room");
-		builder.addTwoWayPath("large room", "The END");
+		builder.addTwoWayPath("room", "coridor");
+		builder.addTwoWayPath("coridor", "largeRoom");
+		builder.addTwoWayPath("largeRoom", "funkyRoom");
+		builder.addTwoWayPath("largeRoom", "TheEND");
 
-		Item klic = new Item("a key", "a key", true);
-		klic.setUseBehaviour(new UseBehaviour(new PlayerInRoomCondition("large room"), new UnlockRoomAction("The END"), true));
-		builder.addItemToRoom("funky room", klic);
+		Item klic = new Item("key", "a key", true);
+		klic.setUseBehaviour(new UseBehaviour(new PlayerInRoomCondition("largeRoom"), new UnlockRoomAction("TheEND"), false));
+		builder.addItemToRoom("funkyRoom", klic);
 		
 		
-		builder.setStartRoom("a room");
+		builder.setStartRoom("room");
 		
-		builder.setEndCondition(new PlayerInRoomCondition("The END"));
+		builder.setEndCondition(new PlayerInRoomCondition("TheEND"));
 		
 		return builder.getResult();
 	}
