@@ -59,20 +59,17 @@ public class Controller {
 	}
 	
 	private GameCommand parseCommand(String commandText) {
-		String[] tokens = commandText.split("\\s+");
-		if(tokens.length < 1)
-			return null;
+		String[] tokens = commandText.split("\\s+", 2);
 		
-		String commandName = tokens[0];
+		String commandName = "";		
+		String param = "";
 		
-		String[] params = null;
-		
-		if(tokens.length > 1) {
-			params = new String[tokens.length - 1];
-			System.arraycopy(tokens, 1, params, 0, params.length);
-		} 
+		if(tokens.length == 2) {
+			commandName = tokens[0];
+			param = tokens[1];
+		}
 				
-		GameCommand command = CommandFactory.getCommand(commandName, params);
+		GameCommand command = CommandFactory.getCommand(commandName, param);
 	
 		return command;
 	}

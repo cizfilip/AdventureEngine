@@ -15,19 +15,19 @@ public class CommandFactory {
 	public static final String USE_COMMAND = "use";
 	
 	
-	public static GameCommand getCommand(String commandName, String[] params) {
+	public static GameCommand getCommand(String commandName, String param) {
 		
 		if(commandName.equalsIgnoreCase(MOVE_COMMAND)) {
-			return new MoveCommand(getParam(params, 0));
+			return new MoveCommand(param);
 		}
 		if(commandName.equalsIgnoreCase(PICK_COMMAND)) {
-			return new PickItemCommand(getParam(params, 0));
+			return new PickItemCommand(param);
 		}
 		if(commandName.equalsIgnoreCase(DROP_COMMAND)) {
-			return new DropItemCommand(getParam(params, 0));
+			return new DropItemCommand(param);
 		}
 		if(commandName.equalsIgnoreCase(USE_COMMAND)) {
-			return new UseItemCommand(getParam(params, 0));
+			return new UseItemCommand(param);
 		}
 		
 		if(commandName.equalsIgnoreCase(HELP_COMMAND)) {
@@ -37,12 +37,7 @@ public class CommandFactory {
 		return new UnknownCommand(commandName);
 	}
 	
-	private static String getParam(String[] params, int index) {
-		if(params == null || params.length < 1)
-			return null;
-		else
-			return params[index];
-	}
+	
 	
 	
 	
